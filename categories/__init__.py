@@ -2,13 +2,13 @@ __version_info__ = {
     'major': 1,
     'minor': 2,
     'micro': 3,
-    'releaselevel': 'final',
+    'releaselevel': 'tg',
     'serial': 1
 }
 
 
 def get_version(short=False):
-    assert __version_info__['releaselevel'] in ('alpha', 'beta', 'final')
+    assert __version_info__['releaselevel'] in ('alpha', 'beta', 'final', 'tg')
     vers = ["%(major)i.%(minor)i" % __version_info__, ]
     if __version_info__['micro'] and not short:
         vers.append(".%(micro)i" % __version_info__)

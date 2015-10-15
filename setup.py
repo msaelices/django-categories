@@ -20,7 +20,7 @@ setup(
     author='Corey Oordt',
     author_email='coreyoordt@gmail.com',
     include_package_data=True,
-    url='http://github.com/callowayproject/django-categories',
+    url='http://github.com/msaelices/django-categories',
     packages=find_packages(),
     classifiers=[
         'Framework :: Django',
