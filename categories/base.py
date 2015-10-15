@@ -7,7 +7,8 @@ from django.contrib import admin
 from django.db import models
 from django import forms
 from django.utils.encoding import force_unicode
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
+from django.utils.translation import ugettext_lazy as _
 
 from mptt.models import MPTTModel
 from mptt.fields import TreeForeignKey
@@ -102,7 +103,7 @@ class CategoryBaseAdminForm(forms.ModelForm):
                                 **kwargs).values('id', 'slug'
                                 ) if c['id'] != self.instance.id]
         if self.cleaned_data['slug'] in this_level_slugs:
-            raise forms.ValidationError(_('The slug must be unique among '
+            raise forms.ValidationError(ugettext('The slug must be unique among '
                                           'the items at its level.'))
 
         # Validate Category Parent
@@ -112,10 +113,10 @@ class CategoryBaseAdminForm(forms.ModelForm):
         if self.cleaned_data.get('parent', None) is None or self.instance.id is None:
             return self.cleaned_data
         elif self.cleaned_data['parent'].id == self.instance.id:
-            raise forms.ValidationError(_("You can't set the parent of the "
+            raise forms.ValidationError(ugettext("You can't set the parent of the "
                                           "item to itself."))
         elif self.cleaned_data['parent'].id in decendant_ids:
-            raise forms.ValidationError(_("You can't set the parent of the "
+            raise forms.ValidationError(ugettext("You can't set the parent of the "
                                           "item to a descendant."))
         return self.cleaned_data
 
